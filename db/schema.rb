@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20170901125749) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "controllers", force: :cascade do |t|
     t.string   "WeeklyStat"
     t.datetime "created_at", null: false
