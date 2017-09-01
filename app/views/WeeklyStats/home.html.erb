@@ -1,0 +1,16 @@
+<html>
+<body>
+	<h2>The Finzi Number Calculator</h2>
+
+	Select a week: 
+	<select>
+	<%
+		x = 1
+		while x < CURRENT_WEEK + 1
+		puts "<option>" + x.to_s + "</option">
+		x = x + 1
+		end
+	%>
+	</select>
+	</body>
+</html>

@@ -1,0 +1,25 @@
+1. download 2016 stats - figure out what went wrong with team names in last script VVVVVVVVVV
+
+2. set 2016 stats for first 3 weeks 2017 games VVVVVV 
+
+2.5 Average stats for first 3 weeks- each week, an average of current + last season VVVVVV
+
+3. input all 2017 games  VVVVVVV
+
+3.5 Change week in main view VVVVV
+
+3.75 Set each week to only pull WeeklyStats from that week VVVVVV
+
+4. write weekly stats downloads task VVVVVV
+
+5.0 Write a task to download the line for each game VVV
+
+6 Deploy to heroku
+
+7 Setup weekly task to download the line
+
+8 setup scheduler to weekly run the weekly stats download task
+
+9 Make pretty
+
+10 Write Roberto email confirming how it works with formula and offering to talk through

@@ -1,0 +1,42 @@
+<h1>Finzi Number Calculator</h1>
+<h3>Season: <%= CURRENT_SEASON %></h3>
+
+Week:
+
+<select id="week_selector" onchange="window.location='/<%=CURRENT_SEASON%>/'+this.value">
+<%
+done_weeks = []
+@all_games.each do |g| %>
+	<% if ! done_weeks.include? g.week %>
+	<option value="<%= g.week.to_s%>" id="<%= g.week.to_s %>"<% if @the_week.to_s == g.week.to_s %> selected<% end %>> 
+		<%= g.week.to_s %>
+	</option>
+	<%
+	end
+	done_weeks.push(g.week)
+end
+%>
+</select>
+
+
+<br /><br />Formula is: Away Team ((PA+PF)/2) vs. Home Team (((PA+PF)/2)+3)  [Second team gets +3 for home-team advantage]
+<br /><br />All lines downloaded on Tuesday
+<% if WeeklyStat.where(:season => @the_season, :week => @the_week).count == 0 %>
+<br /><br /><span style="color:red;">You are viewing a future week whose current statistics are not yet available.  The stats shown for each team are the most recent stats available.</span>
+<% end %>
+<% if @the_week.to_i < 4 %>
+<br /><br /><span style="color:red;">You are viewing one of the first thee weeks. The first three weeks use composite of this season's and last season's statistics</span>
+<% end %>
+<br /><br /><hr />
+<br />
+
+<% @this_weeks_games.each do |game| %>
+	<%= game.team_1.name %> (<%= (game.team_1.finzi_score(@the_week)).to_s %>) at <%= game.team_2.name %> (<%= game.team_2.finzi_score(@the_week) + 3 %>)<br />
+<%= game.finzi_number >= 0 ? game.team_1.name : game.finzi_number == 0 ? "Tie" : game.team_2.name %> by <%= game.finzi_number.abs.to_s %><br />
+<!--Line: <%= game.disp_line %><br />
+Difference: <%= (game.finzi_number).abs.to_s %>-->
+
+<br /><br />
+<% end %>
+
+<br>
